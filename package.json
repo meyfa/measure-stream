@@ -1,0 +1,26 @@
+{
+  "name": "measure-stream",
+  "version": "0.1.0",
+  "description": "Node streams that know their lengths.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JangoBrick/measure-stream.git"
+  },
+  "keywords": [
+    "stream",
+    "streams",
+    "measure",
+    "through"
+  ],
+  "author": "JangoBrick",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JangoBrick/measure-stream/issues"
+  },
+  "homepage": "https://github.com/JangoBrick/measure-stream",
+  "dependencies": {}
+}
