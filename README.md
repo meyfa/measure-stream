@@ -25,8 +25,8 @@ var MeasureStream = require("measure-stream");
 
 var stream = new MeasureStream();
 stream.on("measure", function (info) {
-    // console.log("chunk count:", info.chunks);
-    // console.log("total length:", info.totalLength);
+    console.log("chunk count:", info.chunks);
+    console.log("total length:", info.totalLength);
 });
 
 // You can then use 'stream' as you normally would, e.g.
@@ -35,6 +35,16 @@ source.pipe(stream).pipe(target);
 ```
 
 As you can see, just one additional `.pipe()` call required to make it work!
+
+Additionally, the last `measurement` is always available as a stream property.
+For example, if all you need is the total size after a stream has been
+processed:
+
+```javascript
+stream.on("finish", function () {
+    var bytes = stream.measurements.totalLength;
+});
+```
 
 
 
