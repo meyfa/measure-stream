@@ -1,6 +1,6 @@
 {
   "name": "measure-stream",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Node streams that know their lengths.",
   "main": "index.js",
   "scripts": {
