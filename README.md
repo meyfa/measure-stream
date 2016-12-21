@@ -1,5 +1,7 @@
 # measure-stream
 
+[![Code Climate](https://codeclimate.com/github/JangoBrick/measure-stream/badges/gpa.svg)](https://codeclimate.com/github/JangoBrick/measure-stream)
+
 A duplex (Transform) stream for Node that measures the data passing through it
 and emits that info accordingly. The following properties are available:
 
