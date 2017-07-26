@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JangoBrick/measure-stream.git"
+    "url": "git+https://github.com/meyfa/measure-stream.git"
   },
   "keywords": [
     "stream",
@@ -16,11 +16,11 @@
     "measure",
     "through"
   ],
-  "author": "JangoBrick",
+  "author": "Fabian Meyer",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/JangoBrick/measure-stream/issues"
+    "url": "https://github.com/meyfa/measure-stream/issues"
   },
-  "homepage": "https://github.com/JangoBrick/measure-stream",
+  "homepage": "https://github.com/meyfa/measure-stream",
   "dependencies": {}
 }
