@@ -7,6 +7,22 @@ const MeasureStream = require("../index.js");
 
 describe("MeasureStream", function () {
 
+    it("should pass through all chunks unmodified", function () {
+        const obj = new MeasureStream();
+
+        const source = new PassThrough();
+        const target = new PassThrough();
+
+        source.pipe(obj).pipe(target);
+
+        source.write("hello ", "utf8");
+        source.write("world", "utf8");
+        source.end("!", "utf8");
+
+        const expected = Buffer.from("hello world!", "utf8");
+        expect(target.read()).to.satisfy((bytes) => bytes.equals(expected));
+    });
+
     it("should emit 'measure' events", function (done) {
         const obj = new MeasureStream();
 
