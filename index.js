@@ -1,8 +1,7 @@
-/*jshint node: true */
 "use strict";
 
-var Transform = require("stream").Transform;
-var util = require("util");
+const Transform = require("stream").Transform;
+const util = require("util");
 
 /**
  * Constructs a new duplex (Transform) stream that emits a 'measure' event on
@@ -39,6 +38,14 @@ MeasureStream.prototype._transform = function (chunk, encoding, cb) {
     // continue
     cb(null, chunk);
 
+};
+
+MeasureStream.prototype._flush = function (cb) {
+    // make sure 'measure' was emitted at least once before closing
+    if (this.measurements.chunks === 0) {
+        this.emit("measure", this.measurements);
+    }
+    cb();
 };
 
 module.exports = MeasureStream;

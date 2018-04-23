@@ -1,5 +1,6 @@
 # measure-stream
 
+[![Build Status](https://travis-ci.org/meyfa/measure-stream.svg?branch=master)](https://travis-ci.org/meyfa/measure-stream)
 [![Code Climate](https://codeclimate.com/github/meyfa/measure-stream/badges/gpa.svg)](https://codeclimate.com/github/meyfa/measure-stream)
 
 A duplex (Transform) stream for Node that measures the data passing through it
@@ -54,7 +55,7 @@ stream.on("finish", function () {
 
 MIT License
 
-Copyright (c) 2016 - 2017 Fabian Meyer
+Copyright (c) 2016 - 2018 Fabian Meyer
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
