@@ -1,7 +1,8 @@
 # measure-stream
 
 [![Build Status](https://travis-ci.org/meyfa/measure-stream.svg?branch=master)](https://travis-ci.org/meyfa/measure-stream)
-[![Code Climate](https://codeclimate.com/github/meyfa/measure-stream/badges/gpa.svg)](https://codeclimate.com/github/meyfa/measure-stream)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/8a458e83d62bf8a2c619/test_coverage)](https://codeclimate.com/github/meyfa/measure-stream/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/8a458e83d62bf8a2c619/maintainability)](https://codeclimate.com/github/meyfa/measure-stream/maintainability)
 
 A duplex (Transform) stream for Node that measures the data passing through it
 and emits that info accordingly. The following properties are available:
