@@ -1,6 +1,6 @@
 # measure-stream
 
-[![Build Status](https://travis-ci.org/meyfa/measure-stream.svg?branch=master)](https://travis-ci.org/meyfa/measure-stream)
+[![Build Status](https://travis-ci.com/meyfa/measure-stream.svg?branch=master)](https://travis-ci.com/meyfa/measure-stream)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/8a458e83d62bf8a2c619/test_coverage)](https://codeclimate.com/github/meyfa/measure-stream/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/8a458e83d62bf8a2c619/maintainability)](https://codeclimate.com/github/meyfa/measure-stream/maintainability)
 
