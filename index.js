@@ -1,11 +1,9 @@
 "use strict";
 
-const Transform = require("stream").Transform;
-const util = require("util");
+const stream = require("stream");
 
 /**
- * Constructs a new duplex (Transform) stream that emits a 'measure' event on
- * every chunk of data.
+ * Duplex (Transform) stream that emits a 'measure' event on every chunk of data.
  *
  * The data itself is pushed through as-is.
  *
@@ -13,39 +11,39 @@ const util = require("util");
  * - chunks: the number of processed chunks, including the current one
  * - totalLength: the length of all processed chunks added up
  */
-function MeasureStream(options) {
-    Transform.call(this, options);
+class MeasureStream extends stream.Transform {
+    /**
+     * Constructs a new measure stream.
+     * @param {Object} options Stream options.
+     */
+    constructor (options) {
+        super(options);
 
-    this.measurements = {
-        chunks: 0,
-        totalLength: 0,
+        this.measurements = {
+            chunks: 0,
+            totalLength: 0,
+        };
+    }
+
+    _transform (chunk, encoding, cb) {
+        // measure
+        this.measurements.chunks++;
+        if (chunk && chunk.length) {
+            this.measurements.totalLength += chunk.length;
+        }
+        // notify
+        this.emit("measure", this.measurements);
+        // continue
+        cb(null, chunk);
+    };
+
+    _flush (cb) {
+        // make sure 'measure' was emitted at least once before closing
+        if (this.measurements.chunks === 0) {
+            this.emit("measure", this.measurements);
+        }
+        cb();
     };
 }
-
-util.inherits(MeasureStream, Transform);
-
-MeasureStream.prototype._transform = function (chunk, encoding, cb) {
-
-    // measure
-    this.measurements.chunks++;
-    if (chunk && chunk.length) {
-        this.measurements.totalLength += chunk.length;
-    }
-
-    // notify
-    this.emit("measure", this.measurements);
-
-    // continue
-    cb(null, chunk);
-
-};
-
-MeasureStream.prototype._flush = function (cb) {
-    // make sure 'measure' was emitted at least once before closing
-    if (this.measurements.chunks === 0) {
-        this.emit("measure", this.measurements);
-    }
-    cb();
-};
 
 module.exports = MeasureStream;
