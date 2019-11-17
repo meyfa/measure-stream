@@ -81,4 +81,33 @@ describe("MeasureStream", function () {
         });
     });
 
+    it("should not have measurements setter", function (done) {
+        const obj = new MeasureStream();
+        try {
+            obj.measurements = {};
+            done(new Error("did not throw"));
+        } catch (e) {
+            done();
+        }
+    });
+
+    it("should use object copy in 'measure' event", function (done) {
+        const obj = new MeasureStream();
+
+        obj.on("measure", function (event) {
+            event.chunks = 5;
+            event.totalLength = 30;
+            expect(obj.measurements).to.deep.equal({
+                chunks: 1,
+                totalLength: 42,
+            });
+            done();
+        });
+
+        const data = new PassThrough();
+        data.pipe(obj);
+
+        data.end(Buffer.alloc(42));
+    });
+
 });

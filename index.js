@@ -14,36 +14,54 @@ const stream = require("stream");
 class MeasureStream extends stream.Transform {
     /**
      * Constructs a new measure stream.
+     *
      * @param {Object} options Stream options.
      */
     constructor (options) {
         super(options);
 
-        this.measurements = {
-            chunks: 0,
-            totalLength: 0,
+        this._chunkCount = 0;
+        this._totalLength = 0;
+    }
+
+    /**
+     * Measurements object, containing number of chunks (`chunks`) and total
+     * number of processed bytes (`totalLength`).
+     *
+     * @type {Object}
+     */
+    get measurements () {
+        return {
+            chunks: this._chunkCount,
+            totalLength: this._totalLength,
         };
     }
 
+    /**
+     * @override
+     */
     _transform (chunk, encoding, cb) {
         // measure
-        this.measurements.chunks++;
+        ++this._chunkCount;
         if (chunk && chunk.length) {
-            this.measurements.totalLength += chunk.length;
+            this._totalLength += chunk.length;
         }
         // notify
         this.emit("measure", this.measurements);
         // continue
         cb(null, chunk);
-    };
+    }
 
+    /**
+     * @override
+     */
     _flush (cb) {
         // make sure 'measure' was emitted at least once before closing
-        if (this.measurements.chunks === 0) {
+        if (this._chunkCount === 0) {
             this.emit("measure", this.measurements);
         }
         cb();
-    };
+    }
 }
 
 module.exports = MeasureStream;
