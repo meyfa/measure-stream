@@ -1,6 +1,6 @@
-"use strict";
+'use strict'
 
-const stream = require("stream");
+const { Transform } = require('stream')
 
 /**
  * Duplex (Transform) stream that emits a 'measure' event on every chunk of data.
@@ -11,57 +11,55 @@ const stream = require("stream");
  * - chunks: the number of processed chunks, including the current one
  * - totalLength: the length of all processed chunks added up
  */
-class MeasureStream extends stream.Transform {
-    /**
-     * Constructs a new measure stream.
-     *
-     * @param {Object} options Stream options.
-     */
-    constructor (options) {
-        super(options);
+class MeasureStream extends Transform {
+  /**
+   * Constructs a new measure stream.
+   *
+   * @param {Object} options Stream options.
+   */
+  constructor (options) {
+    super(options)
 
-        this._chunkCount = 0;
-        this._totalLength = 0;
-    }
+    this._chunkCount = 0
+    this._totalLength = 0
+  }
 
-    /**
-     * Measurements object, containing number of chunks (`chunks`) and total
-     * number of processed bytes (`totalLength`).
-     *
-     * @type {Object}
-     */
-    get measurements () {
-        return {
-            chunks: this._chunkCount,
-            totalLength: this._totalLength,
-        };
+  /**
+   * Measurements object, containing number of chunks (`chunks`) and total
+   * number of processed bytes (`totalLength`).
+   *
+   * @type {Object}
+   */
+  get measurements () {
+    return {
+      chunks: this._chunkCount,
+      totalLength: this._totalLength
     }
+  }
 
-    /**
-     * @override
-     */
-    _transform (chunk, encoding, cb) {
-        // measure
-        ++this._chunkCount;
-        if (chunk && chunk.length) {
-            this._totalLength += chunk.length;
-        }
-        // notify
-        this.emit("measure", this.measurements);
-        // continue
-        cb(null, chunk);
+  /**
+   * @override
+   */
+  _transform (chunk, encoding, cb) {
+    ++this._chunkCount
+    if (chunk && chunk.length) {
+      this._totalLength += chunk.length
     }
+    this.emit('measure', this.measurements)
 
-    /**
-     * @override
-     */
-    _flush (cb) {
-        // make sure 'measure' was emitted at least once before closing
-        if (this._chunkCount === 0) {
-            this.emit("measure", this.measurements);
-        }
-        cb();
+    cb(null, chunk)
+  }
+
+  /**
+   * @override
+   */
+  _flush (cb) {
+    // make sure 'measure' was emitted at least once before closing
+    if (this._chunkCount === 0) {
+      this.emit('measure', this.measurements)
     }
+    cb()
+  }
 }
 
-module.exports = MeasureStream;
+module.exports = MeasureStream

@@ -13,7 +13,6 @@ and emits that info accordingly. The following properties are available:
     something other than strings or buffers.
 
 
-
 ## Install
 
 ```
@@ -21,21 +20,20 @@ npm i measure-stream
 ```
 
 
-
 ## Usage
 
 ```javascript
-const MeasureStream = require("measure-stream");
+const MeasureStream = require('measure-stream')
 
-let stream = new MeasureStream();
-stream.on("measure", function (info) {
-    console.log("chunk count:", info.chunks);
-    console.log("total length:", info.totalLength);
-});
+const stream = new MeasureStream()
+stream.on('measure', function (info) {
+  console.log('chunk count:', info.chunks)
+  console.log('total length:', info.totalLength)
+})
 
 // You can then use 'stream' as you normally would, e.g.
 // ('source' is readable and 'target' is writable):
-source.pipe(stream).pipe(target);
+source.pipe(stream).pipe(target)
 ```
 
 As you can see, just one additional `.pipe()` call required to make it work!
@@ -45,7 +43,7 @@ For example, if all you need is the total size after a stream has been
 processed:
 
 ```javascript
-stream.on("finish", function () {
-    let bytes = stream.measurements.totalLength;
-});
+stream.on('finish', function () {
+  const bytes = stream.measurements.totalLength
+})
 ```
