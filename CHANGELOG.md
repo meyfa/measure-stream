@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/meyfa/measure-stream/compare/v2.1.1...v2.2.0) (2022-06-19)
+
+
+### Features
+
+* Convert project to TypeScript ([#24](https://github.com/meyfa/measure-stream/issues/24)) ([f96ecc9](https://github.com/meyfa/measure-stream/commit/f96ecc9ef72be6e5f689669e6a76cb042843495d))
+
 ## [2.1.1](https://github.com/meyfa/measure-stream/compare/v2.1.0...v2.1.1) (2022-02-11)
 
 * chore: Use GitHub Actions ([#9](https://github.com/meyfa/measure-stream/pull/9))
