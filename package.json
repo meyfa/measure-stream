@@ -2,15 +2,18 @@
   "name": "measure-stream",
   "version": "2.1.1",
   "description": "Node streams that know their lengths.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "index.js"
+    "dist"
   ],
   "scripts": {
-    "lint": "standard",
-    "lint-fix": "standard --fix",
-    "test": "mocha --recursive",
-    "coverage": "nyc --reporter=lcov mocha --recursive"
+    "build": "tsc",
+    "lint": "tsc --noEmit && eslint --ignore-path .gitignore .",
+    "lint-fix": "tsc --noEmit && eslint --fix --ignore-path .gitignore .",
+    "test": "mocha --require ts-node/register --recursive \"test/**/*.test.*\"",
+    "coverage": "nyc --reporter=lcov --reporter=text npm test",
+    "prepack": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -32,9 +35,19 @@
     "node": ">=8.0.0"
   },
   "devDependencies": {
+    "@types/chai": "4.3.1",
+    "@types/mocha": "9.1.1",
+    "@types/node": "16.11.41",
+    "@typescript-eslint/eslint-plugin": "4.33.0",
     "chai": "4.3.6",
+    "eslint": "7.32.0",
+    "eslint-config-standard-with-typescript": "21.0.1",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "5.2.0",
     "mocha": "10.0.0",
     "nyc": "15.1.0",
-    "standard": "17.0.0"
+    "ts-node": "10.8.1",
+    "typescript": "4.7.4"
   }
 }

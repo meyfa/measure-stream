@@ -1,0 +1,10 @@
+extends: standard-with-typescript
+
+parserOptions:
+  project: './tsconfig.eslint.json'
+
+overrides:
+  - files: 'test/**/*.test.*'
+    rules:
+      no-unused-expressions: off
+      '@typescript-eslint/no-unused-expressions': off

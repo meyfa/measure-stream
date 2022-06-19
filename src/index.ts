@@ -1,6 +1,4 @@
-'use strict'
-
-const { Transform } = require('stream')
+import { Transform, TransformCallback } from 'stream'
 
 /**
  * Duplex (Transform) stream that emits a 'measure' event on every chunk of data.
@@ -12,17 +10,8 @@ const { Transform } = require('stream')
  * - totalLength: the length of all processed chunks added up
  */
 class MeasureStream extends Transform {
-  /**
-   * Constructs a new measure stream.
-   *
-   * @param {Object} options Stream options.
-   */
-  constructor (options) {
-    super(options)
-
-    this._chunkCount = 0
-    this._totalLength = 0
-  }
+  private _chunkCount: number = 0
+  private _totalLength: number = 0
 
   /**
    * Measurements object, containing number of chunks (`chunks`) and total
@@ -30,30 +19,24 @@ class MeasureStream extends Transform {
    *
    * @type {Object}
    */
-  get measurements () {
+  get measurements (): { chunks: number, totalLength: number } {
     return {
       chunks: this._chunkCount,
       totalLength: this._totalLength
     }
   }
 
-  /**
-   * @override
-   */
-  _transform (chunk, encoding, cb) {
+  override _transform (chunk: any, encoding: BufferEncoding, cb: TransformCallback): void {
     ++this._chunkCount
-    if (chunk && chunk.length) {
-      this._totalLength += chunk.length
+    if (chunk != null && typeof chunk.length === 'number') {
+      this._totalLength += chunk.length as number
     }
     this.emit('measure', this.measurements)
 
     cb(null, chunk)
   }
 
-  /**
-   * @override
-   */
-  _flush (cb) {
+  override _flush (cb: TransformCallback): void {
     // make sure 'measure' was emitted at least once before closing
     if (this._chunkCount === 0) {
       this.emit('measure', this.measurements)
@@ -62,4 +45,4 @@ class MeasureStream extends Transform {
   }
 }
 
-module.exports = MeasureStream
+export = MeasureStream

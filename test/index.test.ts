@@ -1,11 +1,7 @@
-/* eslint-disable   no-unused-expressions */
-/* global           describe, it */
-'use strict'
+import { expect } from 'chai'
+import { PassThrough } from 'stream'
 
-const expect = require('chai').expect
-const PassThrough = require('stream').PassThrough
-
-const MeasureStream = require('../index.js')
+import MeasureStream from '../src/index'
 
 describe('MeasureStream', function () {
   it('should pass through all chunks unmodified', function () {
@@ -21,7 +17,7 @@ describe('MeasureStream', function () {
     source.end('!', 'utf8')
 
     const expected = Buffer.from('hello world!', 'utf8')
-    expect(target.read()).to.satisfy((bytes) => bytes.equals(expected))
+    expect(target.read()).to.satisfy((bytes: Buffer) => bytes.equals(expected))
   })
 
   it("should emit 'measure' events", function (done) {
@@ -85,7 +81,7 @@ describe('MeasureStream', function () {
   it('should not have measurements setter', function (done) {
     const obj = new MeasureStream()
     try {
-      obj.measurements = {}
+      (obj as any).measurements = {}
       done(new Error('did not throw'))
     } catch (e) {
       done()
