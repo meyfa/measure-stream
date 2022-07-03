@@ -38,7 +38,7 @@
     "@types/chai": "4.3.1",
     "@types/mocha": "9.1.1",
     "@types/node": "16.11.41",
-    "@typescript-eslint/eslint-plugin": "4.33.0",
+    "@typescript-eslint/eslint-plugin": "5.30.4",
     "c8": "7.11.3",
     "chai": "4.3.6",
     "eslint": "7.32.0",
