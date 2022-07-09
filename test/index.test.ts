@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { PassThrough } from 'stream'
 
-import MeasureStream from '../src/index'
+import MeasureStream from '../src/index.js'
 
 describe('MeasureStream', function () {
   it('should pass through all chunks unmodified', function () {
