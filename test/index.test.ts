@@ -78,14 +78,11 @@ describe('MeasureStream', function () {
     })
   })
 
-  it('should not have measurements setter', function (done) {
+  it('should not have measurements setter', function () {
     const obj = new MeasureStream()
-    try {
+    expect(() => {
       (obj as any).measurements = {}
-      done(new Error('did not throw'))
-    } catch (e) {
-      done()
-    }
+    }).to.throw()
   })
 
   it("should use object copy in 'measure' event", function (done) {
