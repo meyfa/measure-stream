@@ -78,7 +78,7 @@ describe('MeasureStream', function () {
     })
   })
 
-  it('should not have measurements setter', function (done) {
+  it('should not have measurements setter', function () {
     const obj = new MeasureStream()
     expect(() => {
       (obj as any).measurements = {}
