@@ -35,7 +35,7 @@
     "node": ">=8.0.0"
   },
   "devDependencies": {
-    "@meyfa/eslint-config": "2.1.1",
+    "@meyfa/eslint-config": "2.1.2",
     "@types/chai": "4.3.3",
     "@types/mocha": "10.0.0",
     "@types/node": "16.11.64",
