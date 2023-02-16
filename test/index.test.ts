@@ -1,6 +1,5 @@
-import { expect } from 'chai'
+import assert from 'assert'
 import { PassThrough } from 'stream'
-
 import MeasureStream from '../src/index.js'
 
 describe('MeasureStream', function () {
@@ -17,14 +16,14 @@ describe('MeasureStream', function () {
     source.end('!', 'utf8')
 
     const expected = Buffer.from('hello world!', 'utf8')
-    expect(target.read()).to.satisfy((bytes: Buffer) => bytes.equals(expected))
+    assert.ok(expected.equals(target.read()))
   })
 
   it("should emit 'measure' events", function (done) {
     const obj = new MeasureStream()
 
     obj.on('measure', function (event) {
-      expect(event).to.deep.equal({
+      assert.deepStrictEqual(event, {
         chunks: 1,
         totalLength: 42
       })
@@ -41,7 +40,7 @@ describe('MeasureStream', function () {
     const obj = new MeasureStream()
 
     obj.on('measure', function (event) {
-      expect(event).to.deep.equal({
+      assert.deepStrictEqual(event, {
         chunks: 0,
         totalLength: 0
       })
@@ -57,7 +56,7 @@ describe('MeasureStream', function () {
   it("should have a 'measurements' property", function () {
     const obj = new MeasureStream()
 
-    expect(obj).to.have.a.property('measurements').that.deep.equals({
+    assert.deepStrictEqual(obj.measurements, {
       chunks: 0,
       totalLength: 0
     })
@@ -72,7 +71,7 @@ describe('MeasureStream', function () {
     data.write(Buffer.alloc(21))
     data.end(Buffer.alloc(21))
 
-    expect(obj).to.have.a.property('measurements').that.deep.equals({
+    assert.deepStrictEqual(obj.measurements, {
       chunks: 2,
       totalLength: 42
     })
@@ -80,9 +79,9 @@ describe('MeasureStream', function () {
 
   it('should not have measurements setter', function () {
     const obj = new MeasureStream()
-    expect(() => {
+    assert.throws(() => {
       (obj as any).measurements = {}
-    }).to.throw()
+    })
   })
 
   it("should use object copy in 'measure' event", function (done) {
@@ -91,7 +90,7 @@ describe('MeasureStream', function () {
     obj.on('measure', function (event) {
       event.chunks = 5
       event.totalLength = 30
-      expect(obj.measurements).to.deep.equal({
+      assert.deepStrictEqual(obj.measurements, {
         chunks: 1,
         totalLength: 42
       })
