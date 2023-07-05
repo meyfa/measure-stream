@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/meyfa/measure-stream/compare/v2.2.0...v3.0.0) (2023-07-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* Drop support for Node.js older than v18.16.1 ([#112](https://github.com/meyfa/measure-stream/issues/112)) (#96)
+
+### Miscellaneous Chores
+
+* Drop support for Node.js older than v18.16.1 ([#112](https://github.com/meyfa/measure-stream/issues/112)) ([#96](https://github.com/meyfa/measure-stream/issues/96)) ([fb7ec03](https://github.com/meyfa/measure-stream/commit/fb7ec03fcfc8981aafb7315bd5c3079ed7695dc8))
+
 ## [2.2.0](https://github.com/meyfa/measure-stream/compare/v2.1.1...v2.2.0) (2022-06-19)
 
 
