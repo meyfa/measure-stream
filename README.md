@@ -4,7 +4,7 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/8a458e83d62bf8a2c619/test_coverage)](https://codeclimate.com/github/meyfa/measure-stream/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/8a458e83d62bf8a2c619/maintainability)](https://codeclimate.com/github/meyfa/measure-stream/maintainability)
 
-A duplex (Transform) stream for Node that measures the data passing through it
+A duplex (Transform) stream for Node.js that measures the data passing through it
 and emits that info accordingly. The following properties are available:
 
 * **chunks** - The number of processed chunks up until and including the one
