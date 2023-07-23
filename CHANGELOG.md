@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/meyfa/measure-stream/compare/v3.0.0...v3.0.1) (2023-07-23)
+
+
+### Miscellaneous Chores
+
+* Publish with provenance ([#102](https://github.com/meyfa/measure-stream/issues/102)) ([5df680e](https://github.com/meyfa/measure-stream/commit/5df680e406517e00154e86bace0b5059104e2cd1))
+
 ## [3.0.0](https://github.com/meyfa/measure-stream/compare/v2.2.0...v3.0.0) (2023-07-05)
 
 
