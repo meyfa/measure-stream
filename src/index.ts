@@ -1,4 +1,4 @@
-import { Transform, TransformCallback } from 'stream'
+import { Transform, TransformCallback } from 'node:stream'
 
 /**
  * Duplex (Transform) stream that emits a 'measure' event on every chunk of data.
