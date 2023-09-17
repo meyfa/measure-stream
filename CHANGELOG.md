@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.2](https://github.com/meyfa/measure-stream/compare/v3.0.1...v3.0.2) (2023-09-17)
+
+
+### Bug Fixes
+
+* Use 'node:' protocol in imports ([#117](https://github.com/meyfa/measure-stream/issues/117)) ([0be1e7c](https://github.com/meyfa/measure-stream/commit/0be1e7cb665f2e2760b1c760b2afd4f8ea0135df))
+
 ## [3.0.1](https://github.com/meyfa/measure-stream/compare/v3.0.0...v3.0.1) (2023-07-23)
 
 
