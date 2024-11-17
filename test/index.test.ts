@@ -19,7 +19,7 @@ describe('MeasureStream', function () {
     assert.ok(expected.equals(target.read()))
   })
 
-  it("should emit 'measure' events", function (done) {
+  it('should emit \'measure\' events', function (done) {
     const obj = new MeasureStream()
 
     obj.on('measure', function (event) {
@@ -53,7 +53,7 @@ describe('MeasureStream', function () {
     data.end()
   })
 
-  it("should have a 'measurements' property", function () {
+  it('should have a \'measurements\' property', function () {
     const obj = new MeasureStream()
 
     assert.deepStrictEqual(obj.measurements, {
@@ -62,7 +62,7 @@ describe('MeasureStream', function () {
     })
   })
 
-  it("should update the 'measurements' property", function () {
+  it('should update the \'measurements\' property', function () {
     const obj = new MeasureStream()
 
     const data = new PassThrough()
@@ -84,7 +84,7 @@ describe('MeasureStream', function () {
     })
   })
 
-  it("should use object copy in 'measure' event", function (done) {
+  it('should use object copy in \'measure\' event', function (done) {
     const obj = new MeasureStream()
 
     obj.on('measure', function (event) {

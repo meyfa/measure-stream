@@ -10,8 +10,8 @@ import { Transform, TransformCallback } from 'node:stream'
  * - totalLength: the length of all processed chunks added up
  */
 class MeasureStream extends Transform {
-  private _chunkCount: number = 0
-  private _totalLength: number = 0
+  private _chunkCount = 0
+  private _totalLength = 0
 
   /**
    * Measurements object, containing number of chunks (`chunks`) and total
