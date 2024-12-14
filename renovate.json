@@ -2,38 +2,21 @@
   "extends": [
     "config:js-lib"
   ],
-  "labels": [
-    "dependencies"
-  ],
+  "labels": ["dependencies"],
   "packageRules": [
     {
-      "matchDepTypes": [
-        "devDependencies"
-      ],
-      "extends": [
-        "schedule:weekly"
-      ]
+      "matchDepTypes": ["devDependencies"],
+      "extends": ["schedule:weekly"]
     },
     {
-      "matchDepTypes": [
-        "devDependencies"
-      ],
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor", "patch"],
       "groupName": "dev dependencies (non-major)",
       "groupSlug": "dev-dependencies-non-major"
     },
     {
-      "matchDepTypes": [
-        "devDependencies"
-      ],
-      "matchUpdateTypes": [
-        "minor",
-        "patch",
-        "lockFileMaintenance"
-      ],
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor", "patch", "lockFileMaintenance"],
       "matchPackageNames": [
         "typescript",
         "eslint",
@@ -46,10 +29,8 @@
       "automerge": true
     },
     {
-      "groupName": "octokit packages",
-      "matchPackageNames": [
-        "/^@octokit//"
-      ]
+      "matchPackageNames": ["/^@octokit//"],
+      "groupName": "octokit packages"
     }
   ]
 }
