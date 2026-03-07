@@ -2,8 +2,15 @@
   "name": "measure-stream",
   "version": "3.0.2",
   "description": "Node streams that know their lengths.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "files": [
     "dist"
   ],
@@ -11,7 +18,7 @@
     "build": "node -e \"fs.rmSync('./dist',{force:true,recursive:true})\" && tsc",
     "lint": "tsc --noEmit && eslint .",
     "lint-fix": "tsc --noEmit && eslint --fix .",
-    "test": "mocha --require ts-node/register --recursive \"test/**/*.test.*\"",
+    "test": "mocha --loader ./node_modules/ts-node/esm.mjs --recursive \"test/**/*.test.*\"",
     "coverage": "c8 --reporter=lcov --reporter=text npm test",
     "prepack": "npm run build"
   },

@@ -21,7 +21,7 @@ npm i measure-stream
 ## Usage
 
 ```javascript
-const MeasureStream = require('measure-stream')
+import MeasureStream from 'measure-stream'
 
 const stream = new MeasureStream()
 stream.on('measure', function (info) {
