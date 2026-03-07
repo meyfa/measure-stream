@@ -1,4 +1,4 @@
-import { Transform, TransformCallback } from 'node:stream'
+import { Transform, type TransformCallback } from 'node:stream'
 
 /**
  * Duplex (Transform) stream that emits a 'measure' event on every chunk of data.
@@ -9,7 +9,7 @@ import { Transform, TransformCallback } from 'node:stream'
  * - chunks: the number of processed chunks, including the current one
  * - totalLength: the length of all processed chunks added up
  */
-class MeasureStream extends Transform {
+export default class MeasureStream extends Transform {
   private _chunkCount = 0
   private _totalLength = 0
 
@@ -44,5 +44,3 @@ class MeasureStream extends Transform {
     cb()
   }
 }
-
-export = MeasureStream
