@@ -1,9 +1,11 @@
 import assert from 'node:assert'
+import { once } from 'node:events'
 import { PassThrough } from 'node:stream'
-import MeasureStream from '../src/index.js'
+import { describe, it } from 'node:test'
+import MeasureStream from '../src/index.ts'
 
-describe('MeasureStream', function () {
-  it('should pass through all chunks unmodified', function () {
+void describe('MeasureStream', () => {
+  void it('should pass through all chunks unmodified', () => {
     const obj = new MeasureStream()
 
     const source = new PassThrough()
@@ -19,41 +21,41 @@ describe('MeasureStream', function () {
     assert.ok(expected.equals(target.read()))
   })
 
-  it('should emit \'measure\' events', function (done) {
+  void it('should emit \'measure\' events', async () => {
     const obj = new MeasureStream()
 
-    obj.on('measure', function (event) {
-      assert.deepStrictEqual(event, {
-        chunks: 1,
-        totalLength: 42
-      })
-      done()
-    })
+    const measureEvent = once(obj, 'measure')
 
     const data = new PassThrough()
     data.pipe(obj)
 
     data.end(Buffer.alloc(42))
+
+    const [event] = await measureEvent
+    assert.deepStrictEqual(event, {
+      chunks: 1,
+      totalLength: 42
+    })
   })
 
-  it('should emit an event even for empty streams', function (done) {
+  void it('should emit an event even for empty streams', async () => {
     const obj = new MeasureStream()
 
-    obj.on('measure', function (event) {
-      assert.deepStrictEqual(event, {
-        chunks: 0,
-        totalLength: 0
-      })
-      done()
-    })
+    const measureEvent = once(obj, 'measure')
 
     const data = new PassThrough()
     data.pipe(obj)
 
     data.end()
+
+    const [event] = await measureEvent
+    assert.deepStrictEqual(event, {
+      chunks: 0,
+      totalLength: 0
+    })
   })
 
-  it('should have a \'measurements\' property', function () {
+  void it('should have a \'measurements\' property', () => {
     const obj = new MeasureStream()
 
     assert.deepStrictEqual(obj.measurements, {
@@ -62,7 +64,7 @@ describe('MeasureStream', function () {
     })
   })
 
-  it('should update the \'measurements\' property', function () {
+  void it('should update the \'measurements\' property', () => {
     const obj = new MeasureStream()
 
     const data = new PassThrough()
@@ -77,29 +79,29 @@ describe('MeasureStream', function () {
     })
   })
 
-  it('should not have measurements setter', function () {
+  void it('should not have measurements setter', () => {
     const obj = new MeasureStream()
     assert.throws(() => {
       (obj as any).measurements = {}
     })
   })
 
-  it('should use object copy in \'measure\' event', function (done) {
+  void it('should use object copy in \'measure\' event', async () => {
     const obj = new MeasureStream()
 
-    obj.on('measure', function (event) {
-      event.chunks = 5
-      event.totalLength = 30
-      assert.deepStrictEqual(obj.measurements, {
-        chunks: 1,
-        totalLength: 42
-      })
-      done()
-    })
+    const measureEvent = once(obj, 'measure')
 
     const data = new PassThrough()
     data.pipe(obj)
 
     data.end(Buffer.alloc(42))
+
+    const [event] = await measureEvent
+    event.chunks = 5
+    event.totalLength = 30
+    assert.deepStrictEqual(obj.measurements, {
+      chunks: 1,
+      totalLength: 42
+    })
   })
 })
