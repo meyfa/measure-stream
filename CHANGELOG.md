@@ -1,5 +1,18 @@
 # Changelog
 
+## [4.0.0](https://github.com/meyfa/measure-stream/compare/v3.0.2...v4.0.0) (2026-04-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* Convert to an ESM-only library ([#222](https://github.com/meyfa/measure-stream/issues/222))
+* Require Node.js 22.18.0 or later ([#220](https://github.com/meyfa/measure-stream/issues/220))
+
+### Miscellaneous Chores
+
+* Convert to an ESM-only library ([#222](https://github.com/meyfa/measure-stream/issues/222)) ([9f17c7f](https://github.com/meyfa/measure-stream/commit/9f17c7ffd96537e994a272eff0cf7efbd0778708))
+* Require Node.js 22.18.0 or later ([#220](https://github.com/meyfa/measure-stream/issues/220)) ([33d70af](https://github.com/meyfa/measure-stream/commit/33d70af1ea8d3ae15b0ec3ca8f570d23b97dfac2))
+
 ## [3.0.2](https://github.com/meyfa/measure-stream/compare/v3.0.1...v3.0.2) (2023-09-17)
 
 
